@@ -23,16 +23,8 @@ for (var in variables) {
 }
 tp <- train_process
 
-centroids <- classDist()
-
-# Split train into two data sets for cross-validation
-inTraining <- createDataPartition(Sonar$Class, p = 0.75, list = FALSE)
-fitControl <- trainControl(# 10-kfold CV 
-  method = "repeatedcv",
-  number = 10,
-  repeats = 10)
-
 ### Visualizations
+qplot(data = tp, x = MGR_ID_count, binwidth = 76, fill = ACTION, position = "dodge")
 
 ### Logistic regression
 lgr <- glm(ACTION ~ ., data = train, family = "binomial")
@@ -44,3 +36,10 @@ write.table(submit, "Submissions/lgr_sub", sep = ",", row.names = FALSE)
 #rf <- train(ACTION ~ ., data = train, method = "rf")
 #sample_submit$Action2 <- predict(rf, test)
 #write.table(submit, "Submissions/test_rf_submission.csv", sep = ",", row.names = FALSE)
+
+# Split train into two data sets for cross-validation
+# inTraining <- createDataPartition(Sonar$Class, p = 0.75, list = FALSE)
+# fitControl <- trainControl(# 10-kfold CV 
+#   method = "repeatedcv",
+#   number = 10,
+#   repeats = 10)
