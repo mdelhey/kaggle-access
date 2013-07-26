@@ -10,7 +10,7 @@ test <- read.csv("../Data/test.csv", colClasses = c(rep("factor", 10)))
 train <- read.csv("../Data/train.csv", colClasses = c(rep("factor", 10)))
 sample_submit <- read.csv("../Data/sampleSubmission.csv")
 
-### Logistic regression
+### Random forest
 rf <- train(ACTION ~ ., data = train, method = "rf", ntrees = ntrees)
 sample_submit$Action2 <- predict(rf, test)
-write.table(submit, "Submissions/test_rf_submission.csv", sep = ",", row.names = FALSE)
+write.table(submit, "../Submissions/test_rf_submission.csv", sep = ",", row.names = FALSE)
